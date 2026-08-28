@@ -1,0 +1,19 @@
+{
+  "name": "digipin-live",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:api": "npm run dev -w @digipin/api",
+    "dev:web": "npm run dev -w @digipin/web",
+    "test": "npm run test --workspaces --if-present",
+    "test:engine": "npm run test -w @digipin/engine",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

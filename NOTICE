@@ -1,0 +1,16 @@
+DIGIPIN Live Engine Network
+Copyright 2026 DIGIPIN Live
+
+This product includes software derived from DIGIPIN, developed by the
+Department of Posts, Government of India, in collaboration with the
+Indian Institute of Technology Hyderabad and the National Remote
+Sensing Centre (NRSC), ISRO.
+
+The DIGIPIN encode/decode algorithm is licensed under the Apache
+License, Version 2.0. See the LICENSE file and:
+
+  https://github.com/INDIAPOST-gov/digipin
+
+digipin.live is an independent hosted API and is not an official
+service of India Post, IIT Hyderabad, NRSC, ISRO, or the Government
+of India.

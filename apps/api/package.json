@@ -1,0 +1,25 @@
+{
+  "name": "@digipin/api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "migrate": "tsx src/migrate.ts"
+  },
+  "dependencies": {
+    "@digipin/engine": "*",
+    "@hono/node-server": "^1.14.1",
+    "hono": "^4.7.10",
+    "dotenv": "^16.5.0",
+    "ioredis": "^5.6.1",
+    "pg": "^8.16.0",
+    "resend": "^4.5.1",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/pg": "^8.15.2",
+    "tsx": "^4.19.4"
+  }
+}

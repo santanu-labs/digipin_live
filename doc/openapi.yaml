@@ -1,0 +1,289 @@
+openapi: 3.1.0
+info:
+  title: DIGIPIN Live API
+  version: 1.0.0
+  description: |
+    Hosted encode/decode API for the India Post DIGIPIN grid.
+    Independent product. Not an official Department of Posts service.
+    Wire format is a continuous 10-character identifier. Hyphens are not permitted.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://api.digipin.live
+    description: Production
+  - url: http://localhost:4000
+    description: Local
+tags:
+  - name: Health
+  - name: Spatial
+  - name: Auth
+paths:
+  /health:
+    get:
+      tags: [Health]
+      summary: Liveness
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean }
+                  service: { type: string }
+                  time: { type: string, format: date-time }
+  /v1/spatial/encode:
+    post:
+      tags: [Spatial]
+      summary: Encode coordinates to DIGIPIN
+      security: [{ apiKey: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EncodeRequest"
+            example:
+              latitude: 13.11179621
+              longitude: 80.20264269
+      responses:
+        "200":
+          description: Encoded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EncodeResponse"
+        "400":
+          $ref: "#/components/responses/Error"
+        "401":
+          $ref: "#/components/responses/Error"
+        "429":
+          $ref: "#/components/responses/RateLimited"
+  /v1/spatial/decode:
+    post:
+      tags: [Spatial]
+      summary: Decode DIGIPIN to cell center
+      security: [{ apiKey: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DecodeRequest"
+            example:
+              digipin: 4P3JK852C9
+      responses:
+        "200":
+          description: Decoded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DecodeResponse"
+        "400":
+          $ref: "#/components/responses/Error"
+        "401":
+          $ref: "#/components/responses/Error"
+        "429":
+          $ref: "#/components/responses/RateLimited"
+  /v1/auth/magic-link:
+    post:
+      tags: [Auth]
+      summary: Send passwordless sign-in link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email }
+      responses:
+        "200":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean }
+                  message: { type: string }
+        "400":
+          $ref: "#/components/responses/Error"
+  /v1/auth/callback:
+    get:
+      tags: [Auth]
+      summary: Consume magic-link token and set session cookie
+      parameters:
+        - in: query
+          name: token
+          required: true
+          schema: { type: string }
+      responses:
+        "302":
+          description: Redirect to dashboard
+  /v1/auth/me:
+    get:
+      tags: [Auth]
+      summary: Current account
+      responses:
+        "200":
+          description: Session account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string, format: uuid }
+                  email: { type: string }
+        "401":
+          $ref: "#/components/responses/Error"
+  /v1/auth/logout:
+    post:
+      tags: [Auth]
+      summary: Clear session cookie
+      responses:
+        "200":
+          description: Signed out
+        "401":
+          $ref: "#/components/responses/Error"
+  /v1/auth/keys:
+    get:
+      tags: [Auth]
+      summary: List API keys
+      responses:
+        "200":
+          description: Key metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  keys:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ApiKey"
+        "401":
+          $ref: "#/components/responses/Error"
+    post:
+      tags: [Auth]
+      summary: Create API key (plaintext once)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+      responses:
+        "200":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiKeyCreated"
+        "401":
+          $ref: "#/components/responses/Error"
+  /v1/auth/keys/{id}:
+    delete:
+      tags: [Auth]
+      summary: Revoke API key
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Revoked
+        "401":
+          $ref: "#/components/responses/Error"
+        "404":
+          $ref: "#/components/responses/Error"
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    EncodeRequest:
+      type: object
+      required: [latitude, longitude]
+      properties:
+        latitude: { type: number, minimum: 2.5, maximum: 38.5 }
+        longitude: { type: number, minimum: 63.5, maximum: 99.5 }
+    EncodeResponse:
+      type: object
+      required: [digipin, digipinDisplay]
+      properties:
+        digipin:
+          type: string
+          pattern: "^[23456789CJKLMPFT]{10}$"
+          example: 4T396F42L7
+        digipinDisplay:
+          type: string
+          example: "4T3 96F4 2L7"
+    DecodeRequest:
+      type: object
+      required: [digipin]
+      properties:
+        digipin:
+          type: string
+          description: Continuous 10-character DIGIPIN or 3-4-3 spaced display form
+    DecodeResponse:
+      type: object
+      required: [latitude, longitude, bounds]
+      properties:
+        latitude: { type: number }
+        longitude: { type: number }
+        bounds:
+          type: object
+          properties:
+            minLat: { type: number }
+            maxLat: { type: number }
+            minLon: { type: number }
+            maxLon: { type: number }
+    ApiKey:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        prefix: { type: string }
+        name: { type: string, nullable: true }
+        tier: { type: string, enum: [free, commercial] }
+        revoked: { type: boolean }
+        createdAt: { type: string, format: date-time }
+    ApiKeyCreated:
+      type: object
+      properties:
+        id: { type: string }
+        key: { type: string }
+        prefix: { type: string }
+        name: { type: string, nullable: true }
+        tier: { type: string }
+        warning: { type: string }
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+        code: { type: string }
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    RateLimited:
+      description: Rate limited
+      headers:
+        X-RateLimit-Limit:
+          schema: { type: integer }
+        X-RateLimit-Remaining:
+          schema: { type: integer }
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
