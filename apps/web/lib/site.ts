@@ -1,9 +1,12 @@
 import { FAQS } from "./faq";
 
+const isProd = process.env.NODE_ENV === "production";
+
 export const SITE = {
   name: "DIGIPIN Live",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://digipin.live",
-  apiUrl: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? (isProd ? "https://digipin.live" : "http://localhost:3000"),
+  apiUrl:
+    process.env.NEXT_PUBLIC_API_URL ?? (isProd ? "https://api.digipin.live" : "http://localhost:4000"),
   description:
     "Know your DIGIPIN. Convert latitude and longitude to the official 10-character India Post grid code — no hyphens — with a free map tool and a developer API.",
 };

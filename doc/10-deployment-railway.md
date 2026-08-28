@@ -41,7 +41,7 @@ NEXT_PUBLIC_API_URL=https://api.digipin.live
 NEXT_PUBLIC_SITE_URL=https://digipin.live
 ```
 
-Rebuild web after changing `NEXT_PUBLIC_*`.
+`NEXT_PUBLIC_*` is inlined at **build** time. The web Dockerfile declares matching `ARG`s so Railway can pass them into `next build`. Rebuild web after changing those variables.
 
 ## Domains
 

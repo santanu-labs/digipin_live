@@ -5,8 +5,12 @@ COPY packages/engine ./packages/engine
 COPY apps/web ./apps/web
 RUN npm ci --workspace=@digipin/engine --workspace=@digipin/web --include-workspace-root
 WORKDIR /app/apps/web
-ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production
+# Railway only injects service variables into `docker build` when they are declared as ARG.
+ARG NEXT_PUBLIC_SITE_URL=https://digipin.live
+ARG NEXT_PUBLIC_API_URL=https://api.digipin.live
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 RUN npm run build
-ENV NODE_ENV=production
 EXPOSE 3000
 CMD ["npm", "start"]
