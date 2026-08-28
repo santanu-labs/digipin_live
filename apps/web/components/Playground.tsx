@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState, useTransition } from "react";
 import { decodeAction, encodeAction } from "@/app/actions";
+import { trackEvent } from "@/lib/analytics";
 import { NEW_DELHI } from "@/lib/site";
 import { MapView } from "./MapView";
 
@@ -95,6 +96,7 @@ export function Playground({
       setError("Geolocation is not available in this browser.");
       return;
     }
+    trackEvent("use_geolocation");
     navigator.geolocation.getCurrentPosition(
       (pos) => onMove(pos.coords.latitude, pos.coords.longitude),
       () => setError("Location permission denied. Showing New Delhi."),
@@ -106,6 +108,7 @@ export function Playground({
     setWarning("");
     start(async () => {
       if (mode === "encode") {
+        trackEvent("encode_digipin", { source: "form" });
         runEncode(Number(latitude), Number(longitude));
       } else {
         const result = await decodeAction(digipin);
@@ -120,6 +123,7 @@ export function Playground({
           `${result.bounds.minLat.toFixed(6)}–${result.bounds.maxLat.toFixed(6)} N, ${result.bounds.minLon.toFixed(6)}–${result.bounds.maxLon.toFixed(6)} E`,
         );
         setWarning(result.warning ?? "");
+        trackEvent("decode_digipin", { success: true });
       }
     });
   }

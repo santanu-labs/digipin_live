@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
+import { trackEvent } from "@/lib/analytics";
 
 type KeyRow = {
   id: string;
@@ -63,6 +64,7 @@ export function Dashboard() {
         method: "POST",
         body: JSON.stringify({ email }),
       });
+      trackEvent("request_magic_link");
       setMessage("Check your email for a 15-minute sign-in link.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unable to send link");
@@ -80,6 +82,7 @@ export function Dashboard() {
         body: JSON.stringify({ name: "Production" }),
       });
       setFreshKey(created.key);
+      trackEvent("create_api_key");
       const list = await api<{ keys: KeyRow[] }>("/v1/auth/keys");
       setKeys(list.keys);
     } catch (err) {
@@ -157,7 +160,7 @@ export function Dashboard() {
       </div>
       {error ? <p className="err">{error}</p> : null}
 
-      <div className="card">
+      <div className="card table-wrap">
         <table>
           <thead>
             <tr>

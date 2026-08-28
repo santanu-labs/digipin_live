@@ -72,6 +72,20 @@ a { color: inherit; }
 
 .nav-links a { text-decoration: none; color: var(--muted); }
 .nav-links a:hover { color: var(--ink); }
+.nav-links .btn, .nav-links .btn:hover { color: var(--paper); }
+
+.nav-toggle {
+  display: none;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
 
 .btn {
   display: inline-flex;
@@ -82,6 +96,7 @@ a { color: inherit; }
   background: var(--ink);
   color: var(--paper);
   padding: 10px 14px;
+  min-height: 44px;
   text-decoration: none;
   font-size: 0.88rem;
   cursor: pointer;
@@ -152,6 +167,7 @@ input, textarea {
   background: #fffdf8;
   padding: 10px 12px;
   font: inherit;
+  font-size: 16px;
   color: var(--ink);
 }
 
@@ -184,8 +200,16 @@ pre {
   color: #e7f1ee;
   padding: 16px;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   font-size: 0.82rem;
   line-height: 1.6;
+  max-width: 100%;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
 }
 
 table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
@@ -252,7 +276,30 @@ th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-
 .compare { background: #fff7ed; border-color: #fdba74; }
 
 @media (max-width: 860px) {
+  .wrap { width: min(1180px, calc(100% - 20px)); }
   .hero, .grid-2, .grid-3, .meta-grid, .row, .footer, .footer-grid, .footer-bar { grid-template-columns: 1fr; display: grid; }
   .nav { flex-wrap: wrap; gap: 12px; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; }
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding-bottom: 8px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+  }
+  .nav-links .btn { width: 100%; }
   .map { height: 280px; }
+  .hero { padding: 32px 0 24px; }
+  .section { padding: 32px 0; }
+  h1 { font-size: clamp(1.85rem, 8vw, 3rem); }
+  .tabs { width: 100%; }
+  .tabs button { flex: 1; min-height: 44px; }
 }

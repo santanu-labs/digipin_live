@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/format",
     "/faq",
     "/about",
+    "/contact",
     "/cities",
     "/docs/api-v1-specification",
     "/use-cases/logistics",

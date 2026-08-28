@@ -26,6 +26,7 @@ export function Footer() {
           <Link href="/digipin-vs-pincode">DIGIPIN vs PIN code</Link>
           <Link href="/faq">FAQ</Link>
           <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
         </div>
         <div>
           <b>Cities</b>
@@ -41,6 +42,8 @@ export function Footer() {
           Algorithm: Department of Posts, IIT Hyderabad, NRSC/ISRO · Apache 2.0
         </span>
         <span>
+          <Link href="/contact">Contact</Link>
+          {" · "}
           <Link href="/privacy">Privacy</Link>
           {" · "}
           <Link href="/terms">Terms</Link>

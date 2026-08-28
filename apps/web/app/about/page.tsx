@@ -35,6 +35,10 @@ export default function AboutPage() {
         <li>Operator documentation in the repository <code>/doc</code> folder.</li>
       </ul>
       <p>
+        We do not present this site as an official India Post service. For questions about this
+        hosted converter and API, see <Link href="/contact">contact</Link>.
+      </p>
+      <p>
         <Link href="/know-your-digipin">Know your DIGIPIN →</Link>
       </p>
     </main>
