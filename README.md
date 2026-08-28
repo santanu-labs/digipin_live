@@ -210,13 +210,12 @@ Not built yet (optional later): daily `api_usage` table, a usage chart in the da
 
 | Channel | |
 | --- | --- |
-| Email | [sanmeranam@gmail.com](mailto:sanmeranam@gmail.com) |
-| GitHub | [santanu-labs/digipin_live](https://github.com/santanu-labs/digipin_live) |
+| Email | [hello@digipin.live](mailto:hello@digipin.live) |
 | Site | [https://digipin.live/contact](https://digipin.live/contact) |
 
-Override the public email with `NEXT_PUBLIC_CONTACT_EMAIL` (rebuild web). To use `hello@digipin.live`, add Cloudflare Email Routing to that mailbox, then set the env var.
+Public pages only show the project inbox. Forward `hello@digipin.live` in Cloudflare Email Routing to your private mailbox (do not put a personal address on the site).
 
-Commercial tier is not self-serve: email the operator and we set `api_keys.tier = 'commercial'`.
+Commercial tier is not self-serve: email the project inbox and the operator sets `api_keys.tier = 'commercial'`.
 
 ---
 

@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact DIGIPIN Live",
   description:
-    "Email or GitHub the DIGIPIN Live operator for API access, commercial rate limits, press, and corrections.",
+    "Contact the DIGIPIN Live project for API access, commercial rate limits, press, and corrections.",
   alternates: { canonical: `${SITE.url}/contact` },
 };
 
@@ -14,22 +14,16 @@ export default function ContactPage() {
     <main className="section prose">
       <Breadcrumbs items={[{ name: "Contact" }]} />
       <p className="kicker">Contact</p>
-      <h1>Talk to the operator</h1>
+      <h1>Talk to the project</h1>
       <p>
-        DIGIPIN Live is a small independent service. For API questions, commercial limits,
-        partnerships, or a correction on this site, write directly.
+        DIGIPIN Live is an independent service. For API questions, commercial limits,
+        partnerships, or a correction on this site, use the project inbox.
       </p>
       <div className="card stack">
         <div>
           <label>Email</label>
           <p>
             <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
-          </p>
-        </div>
-        <div>
-          <label>Source &amp; issues</label>
-          <p>
-            <a href={SITE.github}>{SITE.github.replace("https://", "")}</a>
           </p>
         </div>
         <div>

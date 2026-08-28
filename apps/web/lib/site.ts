@@ -7,8 +7,7 @@ export const SITE = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? (isProd ? "https://digipin.live" : "http://localhost:3000"),
   apiUrl:
     process.env.NEXT_PUBLIC_API_URL ?? (isProd ? "https://api.digipin.live" : "http://localhost:4000"),
-  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "sanmeranam@gmail.com",
-  github: process.env.NEXT_PUBLIC_GITHUB_URL ?? "https://github.com/santanu-labs/digipin_live",
+  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@digipin.live",
   description:
     "Know your DIGIPIN. Convert latitude and longitude to the official 10-character India Post grid code — no hyphens — with a free map tool and a developer API.",
 };
@@ -22,7 +21,6 @@ export function organizationLd() {
     url: SITE.url,
     description: SITE.description,
     email: SITE.contactEmail,
-    sameAs: [SITE.github],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
