@@ -29,12 +29,16 @@ app.onError((error, c) => {
   return c.json({ error: "Internal server error", code: "internal_error" }, 500);
 });
 
-await migrate();
-await connectRedis();
-
 serve({ fetch: app.fetch, port: env.port }, (info) => {
   console.log(`DIGIPIN API listening on ${info.port}`);
 });
+
+try {
+  await migrate();
+  await connectRedis();
+} catch (error) {
+  console.error("Startup dependency failed", error);
+}
 
 for (const signal of ["SIGINT", "SIGTERM"] as const) {
   process.on(signal, async () => {
