@@ -28,7 +28,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Know Your DIGIPIN — Official 10-character India Post Grid Converter",
+    default: "DIGIPIN — GPS converter, API and SDK",
     template: "%s · DIGIPIN Live",
   },
   description: SITE.description,

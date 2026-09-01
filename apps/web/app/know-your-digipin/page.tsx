@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { Playground } from "@/components/Playground";
@@ -38,8 +39,9 @@ export default async function KnowPage({
       <p className="kicker">Get my DIGIPIN</p>
       <h1>Know your DIGIPIN</h1>
       <p className="lede">
-        This is the search people type into Google. Drop a pin, use the device GPS, or paste a
-        code. You do not need an account for the converter.
+        This is the search people type into Google. Drop a pin, use device GPS, or paste a
+        code. You do not need an account. Same tool as{" "}
+        <Link href="/digipin-gps">DIGIPIN GPS</Link>.
       </p>
       <Playground
         initialMode={mode}

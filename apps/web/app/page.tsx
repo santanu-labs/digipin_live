@@ -7,7 +7,9 @@ import { CITIES } from "@/lib/cities";
 import { faqLd, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Know Your DIGIPIN — Official 10-character India Post Grid Converter",
+  title: "DIGIPIN — GPS converter, API and SDK for the India Post grid",
+  description:
+    "DIGIPIN Live: convert GPS to the official 10-character India Post DIGIPIN, call a hosted DIGIPIN API, or run the DIGIPIN SDK offline. Independent — not a government portal.",
   alternates: { canonical: SITE.url },
 };
 
@@ -18,18 +20,18 @@ export default function HomePage() {
       <section className="hero">
         <div>
           <p className="kicker">Know your DIGIPIN</p>
-          <h1>Every 4-metre cell in India has a 10-character address.</h1>
+          <h1>DIGIPIN converter, API and SDK.</h1>
           <p className="lede">
-            Convert GPS coordinates to the India Post DIGIPIN — and back — using the published
-            IIT Hyderabad algorithm. Official wire format is a continuous code. Hyphens are not
-            standard.
+            Convert GPS coordinates to the official India Post DIGIPIN — and back — using the
+            published IIT Hyderabad algorithm. Hosted DIGIPIN API for apps. TypeScript DIGIPIN SDK
+            for offline. Continuous 10-character wire format. Hyphens are not standard.
           </p>
           <div className="actions">
-            <Link className="btn" href="/know-your-digipin">
-              Find my DIGIPIN
+            <Link className="btn" href="/digipin-gps">
+              DIGIPIN from GPS
             </Link>
-            <Link className="btn ghost" href="/how-digipin-works">
-              How the grid works
+            <Link className="btn ghost" href="/digipin-api">
+              DIGIPIN API
             </Link>
           </div>
           <div className="meta-grid">
@@ -105,7 +107,7 @@ export default function HomePage() {
 
       <section className="section">
         <p className="kicker">Developers</p>
-        <h2>API when you need scale. Engine when you need offline.</h2>
+        <h2>DIGIPIN API when you need HTTP. DIGIPIN SDK when you need offline.</h2>
         <div className="grid-2">
           <div className="card">
             <pre>{`POST /v1/spatial/encode
@@ -118,15 +120,15 @@ X-API-Key: dp_live_…
           </div>
           <div>
             <p>
-              Free tier 60 requests/minute. Commercial 5,000. Keys are hashed. Spatial compute
-              never touches disk.
+              Free DIGIPIN API: 60 requests/minute. Commercial: 5,000. Keys are hashed. Or embed
+              the TypeScript DIGIPIN SDK and never leave your process.
             </p>
             <div className="actions">
-              <Link className="btn" href="/dashboard">
-                Create a key
+              <Link className="btn" href="/digipin-api">
+                DIGIPIN API
               </Link>
-              <Link className="btn ghost" href="/docs/api-v1-specification">
-                API specification
+              <Link className="btn ghost" href="/digipin-sdk">
+                DIGIPIN SDK
               </Link>
             </div>
           </div>

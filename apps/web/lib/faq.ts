@@ -39,6 +39,18 @@ export const FAQS = [
     q: "Is digipin.live the official India Post website?",
     a: "No. We implement the published Apache 2.0 algorithm. The official government pages and GitHub live under India Post. We do not use government logos or government inboxes.",
   },
+  {
+    q: "Is there a DIGIPIN API?",
+    a: "Yes. digipin.live hosts a REST DIGIPIN API at api.digipin.live. POST /v1/spatial/encode and /v1/spatial/decode with an X-API-Key. Free accounts are limited to 60 requests per minute.",
+  },
+  {
+    q: "Is there a DIGIPIN SDK?",
+    a: "Yes. The TypeScript DIGIPIN SDK (@digipin/engine) encodes and decodes offline using the same official algorithm as the hosted API. Use the SDK inside your process; use the API when you want HTTP and hashed keys.",
+  },
+  {
+    q: "How do I get a DIGIPIN from GPS?",
+    a: "Open the DIGIPIN GPS page, allow location or paste latitude and longitude. The official 10-character code is the grid cell that contains that GPS reading, not a personal ID.",
+  },
 ] as const;
 
 export const PRECISION = [

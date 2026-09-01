@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "API v1 specification",
-  description: "REST contract for the DIGIPIN Live encode, decode, and authentication APIs.",
+  title: "DIGIPIN API v1 specification — encode, decode, auth",
+  description:
+    "REST contract for the DIGIPIN API: encode GPS to DIGIPIN, decode to coordinates, magic-link auth, and rate limits.",
+  alternates: { canonical: `${SITE.url}/docs/api-v1-specification` },
 };
 
 export default function ApiSpecPage() {
   return (
     <main className="section">
-      <p className="kicker">Implementation specifications</p>
-      <h1>API v1 specification</h1>
+      <p className="kicker">DIGIPIN API</p>
+      <h1>DIGIPIN API v1 specification</h1>
       <p className="lede">
         Base URL: <code>{SITE.apiUrl}</code>. Spatial routes require <code>X-API-Key</code>.
         Auth routes are cookie-session and origin-locked.

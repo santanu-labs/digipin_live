@@ -15,6 +15,7 @@ export function Footer() {
         <div>
           <b>Convert</b>
           <Link href="/know-your-digipin">Know your DIGIPIN</Link>
+          <Link href="/digipin-gps">DIGIPIN GPS</Link>
           <Link href="/tools/lat-long-to-digipin">Lat/long → DIGIPIN</Link>
           <Link href="/tools/digipin-to-lat-long">DIGIPIN → lat/long</Link>
           <Link href="/format">Official format</Link>
@@ -25,6 +26,8 @@ export function Footer() {
           <Link href="/how-digipin-works">How DIGIPIN works</Link>
           <Link href="/digipin-vs-pincode">DIGIPIN vs PIN code</Link>
           <Link href="/faq">FAQ</Link>
+          <Link href="/digipin-api">DIGIPIN API</Link>
+          <Link href="/digipin-sdk">DIGIPIN SDK</Link>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
         </div>
@@ -48,7 +51,7 @@ export function Footer() {
           {" · "}
           <Link href="/terms">Terms</Link>
           {" · "}
-          <Link href="/docs/api-v1-specification">API spec</Link>
+          <Link href="/digipin-api">DIGIPIN API</Link>
         </span>
       </div>
     </footer>

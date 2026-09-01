@@ -9,7 +9,7 @@ export const SITE = {
     process.env.NEXT_PUBLIC_API_URL ?? (isProd ? "https://api.digipin.live" : "http://localhost:4000"),
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@digipin.live",
   description:
-    "Know your DIGIPIN. Convert latitude and longitude to the official 10-character India Post grid code — no hyphens — with a free map tool and a developer API.",
+    "DIGIPIN converter, API and SDK. Turn GPS into the official 10-character India Post grid code — no hyphens — or decode a DIGIPIN back to a map cell.",
 };
 
 export const NEW_DELHI = { latitude: 28.6139, longitude: 77.209 };

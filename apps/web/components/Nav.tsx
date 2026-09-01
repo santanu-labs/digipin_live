@@ -34,7 +34,7 @@ export function Nav() {
         <Link href="/faq" onClick={close}>
           FAQ
         </Link>
-        <Link href="/docs/api-v1-specification" onClick={close}>
+        <Link href="/digipin-api" onClick={close}>
           API
         </Link>
         <Link href="/contact" onClick={close}>
